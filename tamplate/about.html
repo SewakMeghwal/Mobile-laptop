@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title%}About Us{% endblock title %}
+
+{% block body %}
+  <style>
+    .about-hero {
+      background: linear-gradient(135deg, #e9fff9 0%, #f7faf9 60%, #ffffff 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    .about-photo {
+      width: 320px;
+      max-width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-text h2 {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .about-text h5 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+  </style>
+
+  <div class="container my-5">
+    <div class="text-center mb-4">
+      <h1 class="section-title">About Us</h1>
+      <p class="text-muted-soft mb-0">A quick look at our story and what we offer</p>
+    </div>
+
+    <section class="about-hero p-4 p-lg-5">
+      <div class="row align-items-center g-4">
+        <div class="col-md-5 text-center">
+          <img src="{% static 'my_img_S.jpg' %}" class="about-photo" alt="About us">
+        </div>
+        <div class="col-md-7 about-text">
+          <h2 class="mb-2">Mobiles & Laptops</h2>
+          <h5 class="mb-3">Quality products, friendly service</h5>
+          <p>
+            Hello, welcome to our website. We offer mobiles, laptops, and accessories at great value.
+            Choose your favorite products and enjoy reliable quality at a fair price. If you have any
+            questions, contact us or reach us on social platforms. Thank you and have a nice day.
+          </p>
+          <div class="d-flex flex-wrap gap-2 mt-3">
+            <a href="contectf" class="btn btn-success">Contact Us</a>
+            <a href="https://t.me/sewak_77" class="btn btn-outline-secondary">Telegram</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+{% endblock body %}
+
+
+

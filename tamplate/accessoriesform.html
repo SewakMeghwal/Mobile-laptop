@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}  Accessories Form {% endblock title %}
+
+<style>
+    .container {
+        margin-top: 15px;
+    }
+</style>
+
+{% block body %}
+{% load crispy_forms_tags %}
+<h1 style="text-align: center;"> <u> Add New Accessories </u></h1>
+<div class="container">
+    {% if user.is_superuser %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{form.title|as_crispy_field}}
+        {{form.image|as_crispy_field}}
+        {{form.desc|as_crispy_field}}
+        
+        <button type="submit" class="btn btn-success">submit</button>
+    </form>
+    {% else %}
+    <h1>Wrong url </h1>
+    {% endif %}
+</div>
+
+{% endblock body %}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title%}Profile{% endblock title %}
+
+{% block body %}
+  <style>
+    .profile-hero {
+      background: linear-gradient(135deg, #e9fff9 0%, #b3ffff 45%, #e9fff9 100%);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-card {
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .profile-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid #ffffff;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+    }
+
+    .profile-label {
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #198754;
+      font-weight: 700;
+    }
+  </style>
+
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="profile-hero p-4 rounded-4 text-center mb-4">
+          <h1 class="mb-1">Profile</h1>
+          <p class="mb-0 text-muted">Welcome back, {{ user.username }}</p>
+        </div>
+
+        <div class="card profile-card p-4">
+          <div class="row align-items-center g-4">
+            <div class="col-md-5 text-center">
+              {% for i in image %}
+                <img src="{{ i.image.url }}" alt="Profile photo" class="profile-avatar">
+              {% endfor %}
+            </div>
+            <div class="col-md-7">
+              <div class="mb-3">
+                <div class="profile-label">Username</div>
+                <div class="fs-5 fw-semibold">{{ user.username }}</div>
+              </div>
+              <div class="mb-4">
+                <div class="profile-label">Email</div>
+                <div class="fs-5 fw-semibold">{{ user.email }}</div>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2">
+                {% for i in image %}
+                  <a href="{% url 'updatei' i.id %}" class="btn btn-success">Update Photo</a>
+                  <a href="{% url 'deletei' i.id %}" class="btn btn-outline-danger">Delete Photo</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+{% endblock body %}
+

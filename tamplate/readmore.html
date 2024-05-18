@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title%}Readmore{% endblock title %}
+
+{% block body %}
+<style>
+    .read-card {
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        background: var(--surface);
+    }
+    .read-image {
+        width: 100%;
+        max-height: 380px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+    }
+    .read-title {
+        color: var(--primary);
+        font-weight: 700;
+    }
+    .read-subtitle {
+        color: var(--text);
+        font-weight: 600;
+    }
+    .read-desc {
+        color: var(--muted);
+        line-height: 1.7;
+    }
+</style>
+
+<div class="container my-5">
+    <div class="row g-4 align-items-center read-card p-4 p-lg-5">
+        <div class="col-md-5 text-center">
+            <img src="{{data.image.url}}" class="read-image" alt="img">
+        </div>
+        <div class="col-md-7">
+            <h1 class="read-title mb-2">{{data.title}}</h1>
+            <h5 class="read-subtitle mb-3">About Accessory</h5>
+            <p class="read-desc">{{data.desc}}</p>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+                <a href="{% url 'cart_add' 'a' data.id %}" class="btn btn-success">Add to Cart</a>
+                <a href="{% url 'cart' %}" class="btn btn-outline-secondary">Go to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    {% endblock body %}

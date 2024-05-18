@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+
+<div class="container my-3">
+
+  <h1 class="my-4 text-center section-title">Select Your Mobile, Laptop And Accessories</h1>
+
+  <style>
+    .center {
+        display: table;
+        margin: auto;
+    }
+
+    .image {
+        margin-top: 50px;
+        width: 350px;
+        height: 470px;
+        object-fit: cover;
+        border-radius: 20px;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .image:hover {
+        transform: scale(1.1);
+        box-shadow: 10px 10px 10px 5px rgb(40, 194, 171);
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+       
+        <div class="col-lg-4 ">
+            <img src="{% static 'm2.jpg' %}" alt="Mobiles" class="image"><br><br>
+            <div class="text-center">
+                <h2 class="section-title">Mobiles</h2>
+                <a href="mobile" class="btn btn-success">Go to Mobiles</a>
+            </div>
+        </div>  
+
+        <div class="col-lg-4 ">
+            <img src="{% static 'images.jpg' %}" alt="Laptops" class="image"><br><br>
+            <div class="text-center">
+                <h2 class="section-title">Laptops</h2>
+                <a href="laptop" class="btn btn-success">Go to Laptops</a>
+            </div>
+        </div>  
+                
+        <div class="col-lg-4 ">
+            <img src="{% static 'm4.jpg' %}" alt="Accessories" class="image"><br><br>
+            <div class="text-center">
+                <h2 class="section-title">Accessories</h2>
+                <a href="accessories" class="btn btn-success">Go to Accessories</a>
+            </div>
+         </div>  
+        
+       
+    </div>
+</div>
+
+  {% endblock body %}

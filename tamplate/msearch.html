@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title%} Mobile {% endblock title %}
+{% block body%}
+<h1 class="my-4" style="text-align: center;">Search Related Items</h1>
+
+<style>
+    .center {
+        display: table;
+        margin: auto;
+    }
+
+    .image {
+        margin-top: 50px;
+        width: 350px;
+        height: 470px;
+        object-fit: cover;
+        border-radius: 20px;
+        object-fit: cover;
+        transition: 0.4s;
+    }
+
+    .image:hover {
+        transform: scale(1.1);
+        box-shadow: 10px 10px 10px 5px rgb(40, 194, 171);
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        {% for i in data %}
+        <div class="col-lg-4 ">
+            <!-- <h2 class="center">{{i.tittle}}</h2>     -->
+           
+                <img src="{{i.image.url}}" class="image center" alt="img"> <br>
+            <h2 class="center">{{i.title}}</h2>
+           
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group" style="margin-left: 130px;">
+            <a href="{% url 'mread' i.id %}" class="center"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+            <a href="{% url 'cart_add' 'm' i.id %}" class="center"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
+            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+          </div>
+          <!-- <a href="{% url 'aread' i.id %}" class="center">Read More</a> <br> <br> -->
+         
+        </div>
+           
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock body %}
