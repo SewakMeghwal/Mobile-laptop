@@ -1,52 +1,126 @@
 {% extends 'base.html' %}
-{% block title%} Accessories {% endblock title %}
-{% block body%}
-<h1 class="my-4" style="text-align: center;">Search Related Items</h1>
+{% block title %}Search Results for "{{ query }}"{% endblock title %}
 
-<style>
-    .center {
-        display: table;
-        margin: auto;
-    }
-
-    .image {
-        margin-top: 50px;
-        width: 350px;
-        height: 470px;
-        object-fit: cover;
-        border-radius: 20px;
-        object-fit: cover;
-        transition: 0.4s;
-    }
-
-    .image:hover {
-        transform: scale(1.1);
-        box-shadow: 10px 10px 10px 5px rgb(40, 194, 171);
-    }
-</style>
-
-<div class="container">
-    <div class="row">
-        {% for i in data %}
-        <div class="col-lg-4 ">
-            <!-- <h2 class="center">{{i.tittle}}</h2>     -->
-           
-                <img src="{{i.image.url}}" class="image center" alt="img"> <br>
-            <h2 class="center">{{i.title}}</h2>
-           
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group" style="margin-left: 130px;">
-            <a href="{% url 'aread' i.id %}" class="center"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-            <a href="{% url 'cart_add' 'a' i.id %}" class="center"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
-            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-          </div>
-          <!-- <a href="{% url 'aread' i.id %}" class="center">Read More</a> <br> <br> -->
-         
-        </div>
-           
-        </div>
-        {% endfor %}
+{% block body %}
+<div class="container my-5">
+    <div class="mb-4 pb-2 border-bottom">
+        <h1 class="section-title mb-1"><i class="fa-solid fa-magnifying-glass me-2"></i>Search Results</h1>
+        <p class="text-muted-soft mb-0">
+            {% if query %}
+            Showing {{ total_count }} result{{ total_count|pluralize }} for "<strong class="text-dark">{{ query }}</strong>"
+            {% else %}
+            Please enter a keyword to search for devices or accessories.
+            {% endif %}
+        </p>
     </div>
-</div>
 
+    {% if query %}
+        <!-- Mobiles Results -->
+        {% if mobiles %}
+        <div class="mb-5">
+            <h3 class="fw-bold text-success mb-3"><i class="fa-solid fa-mobile-screen me-2"></i>Mobiles</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                {% for i in mobiles %}
+                <div class="col">
+                    <div class="product-card">
+                        <div class="card-img-wrapper">
+                            {% if i.image %}
+                            <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                            {% else %}
+                            <div class="img-fallback w-100 h-100"></div>
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <h4 class="product-title">{{ i.title }}</h4>
+                            <p class="product-desc">{{ i.desc|default:"Smartphone device" }}</p>
+                            <div class="card-footer-actions">
+                                <a href="{% url 'mread' i.id %}" class="btn-outline-custom flex-grow-1">View</a>
+                                <a href="{% url 'cart_add' 'm' i.id %}" class="btn-primary-custom flex-grow-1">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Laptops Results -->
+        {% if laptops %}
+        <div class="mb-5">
+            <h3 class="fw-bold text-success mb-3"><i class="fa-solid fa-laptop me-2"></i>Laptops</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                {% for i in laptops %}
+                <div class="col">
+                    <div class="product-card">
+                        <div class="card-img-wrapper">
+                            {% if i.image %}
+                            <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                            {% else %}
+                            <div class="img-fallback w-100 h-100"></div>
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <h4 class="product-title">{{ i.title }}</h4>
+                            <p class="product-desc">{{ i.desc|default:"Laptop computer" }}</p>
+                            <div class="card-footer-actions">
+                                <a href="{% url 'lread' i.id %}" class="btn-outline-custom flex-grow-1">View</a>
+                                <a href="{% url 'cart_add' 'l' i.id %}" class="btn-primary-custom flex-grow-1">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Accessories Results -->
+        {% if accessories %}
+        <div class="mb-5">
+            <h3 class="fw-bold text-success mb-3"><i class="fa-solid fa-headphones me-2"></i>Accessories</h3>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                {% for i in accessories %}
+                <div class="col">
+                    <div class="product-card">
+                        <div class="card-img-wrapper">
+                            {% if i.image %}
+                            <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                            {% else %}
+                            <div class="img-fallback w-100 h-100"></div>
+                            {% endif %}
+                        </div>
+                        <div class="card-content">
+                            <h4 class="product-title">{{ i.title }}</h4>
+                            <p class="product-desc">{{ i.desc|default:"Mobile or laptop accessory" }}</p>
+                            <div class="card-footer-actions">
+                                <a href="{% url 'aread' i.id %}" class="btn-outline-custom flex-grow-1">View</a>
+                                <a href="{% url 'cart_add' 'a' i.id %}" class="btn-primary-custom flex-grow-1">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if total_count == 0 %}
+        <div class="product-card p-5 text-center my-4">
+            <i class="fa-solid fa-magnifying-glass fs-1 text-muted mb-3 d-block"></i>
+            <h4 class="fw-bold mb-2">No Matching Products Found</h4>
+            <p class="text-muted mb-4">We couldn't find any products matching "{{ query }}". Try searching for another keyword like "iPhone", "HP", "Mouse", etc.</p>
+            <a href="{% url 'home' %}" class="btn-primary-custom px-4 text-decoration-none">
+                <i class="fa-solid fa-arrow-left me-2"></i> Return to Home
+            </a>
+        </div>
+        {% endif %}
+    {% else %}
+    <div class="product-card p-5 text-center my-4">
+        <i class="fa-solid fa-search fs-1 text-muted mb-3 d-block"></i>
+        <h4 class="fw-bold mb-2">Search the Catalog</h4>
+        <p class="text-muted">Use the search bar above to search for mobiles, laptops, and accessories.</p>
+    </div>
+    {% endif %}
+</div>
 {% endblock body %}

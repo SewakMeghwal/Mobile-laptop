@@ -1,70 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title%}About Us{% endblock title %}
+{% block title %}About Us{% endblock title %}
 
 {% block body %}
-  <style>
-    .about-hero {
-      background: linear-gradient(135deg, #e9fff9 0%, #f7faf9 60%, #ffffff 100%);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
-    }
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
+      <i class="fa-solid fa-circle-info me-1"></i> Our Mission
+    </span>
+    <h1 class="display-6 section-title fw-bold">About Mobile Laptop Shop</h1>
+    <p class="text-muted-soft lead">Your trusted destination for genuine mobile phones, laptops, and premium accessories.</p>
+  </div>
 
-    .about-photo {
-      width: 320px;
-      max-width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-    }
-
-    .about-text h2 {
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .about-text h5 {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .about-text p {
-      color: var(--muted);
-      line-height: 1.7;
-    }
-  </style>
-
-  <div class="container my-5">
-    <div class="text-center mb-4">
-      <h1 class="section-title">About Us</h1>
-      <p class="text-muted-soft mb-0">A quick look at our story and what we offer</p>
-    </div>
-
-    <section class="about-hero p-4 p-lg-5">
-      <div class="row align-items-center g-4">
-        <div class="col-md-5 text-center">
-          <img src="{% static 'my_img_S.jpg' %}" class="about-photo" alt="About us">
-        </div>
-        <div class="col-md-7 about-text">
-          <h2 class="mb-2">Mobiles & Laptops</h2>
-          <h5 class="mb-3">Quality products, friendly service</h5>
-          <p>
-            Hello, welcome to our website. We offer mobiles, laptops, and accessories at great value.
-            Choose your favorite products and enjoy reliable quality at a fair price. If you have any
-            questions, contact us or reach us on social platforms. Thank you and have a nice day.
-          </p>
-          <div class="d-flex flex-wrap gap-2 mt-3">
-            <a href="contectf" class="btn btn-success">Contact Us</a>
-            <a href="https://t.me/sewak_77" class="btn btn-outline-secondary">Telegram</a>
+  <div class="product-card p-4 p-md-5">
+    <div class="row align-items-center g-5">
+      <div class="col-md-5 text-center">
+        <div class="position-relative d-inline-block">
+          <img src="{% static 'my_img_S.jpg' %}" class="img-fluid rounded-4 shadow-lg border" alt="Founder & Store" style="max-height: 380px; object-fit: cover;">
+          <div class="position-absolute bottom-0 start-50 translate-middle-x bg-white px-4 py-2 rounded-pill shadow-sm border text-nowrap fw-bold text-success mb-n3">
+            <i class="fa-solid fa-shield-check me-1"></i> Verified Merchant
           </div>
         </div>
       </div>
-    </section>
+      <div class="col-md-7">
+        <h2 class="fw-bold text-dark mb-3">Quality Tech Products & Friendly Support</h2>
+        <p class="text-muted fs-6 mb-4" style="line-height: 1.8;">
+          Welcome to our official Mobile & Laptop store! We specialize in curating the finest selection of smartphones, workstations, gaming laptops, and high performance accessories. Every device listed in our catalog passes quality inspection to ensure complete satisfaction.
+        </p>
+        <div class="row g-3 mb-4">
+          <div class="col-6">
+            <div class="p-3 bg-light rounded-3 border">
+              <i class="fa-solid fa-truck-fast text-success fs-4 mb-2"></i>
+              <h6 class="fw-bold mb-1">Fast Delivery</h6>
+              <p class="text-muted small mb-0">Prompt dispatch to your doorstep.</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 bg-light rounded-3 border">
+              <i class="fa-solid fa-headset text-success fs-4 mb-2"></i>
+              <h6 class="fw-bold mb-1">24/7 Assistance</h6>
+              <p class="text-muted small mb-0">Dedicated telegram support.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3">
+          <a href="{% url 'contectf' %}" class="btn-primary-custom px-4 py-2 text-decoration-none">
+            <i class="fa-solid fa-envelope me-2"></i> Contact Us
+          </a>
+          <a href="https://t.me/sewak_77" target="_blank" class="btn-outline-custom px-4 py-2 text-decoration-none">
+            <i class="fa-brands fa-telegram me-2"></i> Chat on Telegram
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 {% endblock body %}
-
-
-

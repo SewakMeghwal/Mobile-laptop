@@ -1,30 +1,41 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-{% block title %}  Accessories Form {% endblock title %}
-
-<style>
-    .container {
-        margin-top: 15px;
-    }
-</style>
+{% block title %}Add New Accessory{% endblock title %}
 
 {% block body %}
-{% load crispy_forms_tags %}
-<h1 style="text-align: center;"> <u> Add New Accessories </u></h1>
-<div class="container">
-    {% if user.is_superuser %}
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="product-card p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <h2 class="section-title mb-1"><i class="fa-solid fa-plus-circle me-2"></i>Add New Accessory</h2>
+                    <p class="text-muted-soft mb-0">Fill out item details to add to accessories inventory.</p>
+                </div>
 
-        {{form.title|as_crispy_field}}
-        {{form.image|as_crispy_field}}
-        {{form.desc|as_crispy_field}}
-        
-        <button type="submit" class="btn btn-success">submit</button>
-    </form>
-    {% else %}
-    <h1>Wrong url </h1>
-    {% endif %}
+                <form action="{% url 'aadd' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form.title|as_crispy_field }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.image|as_crispy_field }}
+                    </div>
+                    <div class="mb-4">
+                        {{ form.desc|as_crispy_field }}
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <button type="submit" class="btn-primary-custom px-4 border-0">
+                            <i class="fa-solid fa-check me-2"></i> Save Accessory
+                        </button>
+                        <a href="{% url 'accessrioes' %}" class="btn-outline-custom px-4 text-decoration-none">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock body %}

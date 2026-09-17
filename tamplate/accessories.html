@@ -1,52 +1,50 @@
 {% extends 'base.html' %}
-{% block title%} Accessories {% endblock title %}
-{% block body%}
-<h1 class="my-4" style="text-align: center;">Select Your Accessories</h1>
+{% block title %}Accessories{% endblock title %}
 
-<style>
-    .center {
-        display: table;
-        margin: auto;
-    }
-
-    .image {
-        margin-top: 50px;
-        width: 350px;
-        height: 470px;
-        object-fit: cover;
-        border-radius: 20px;
-        object-fit: cover;
-        transition: 0.4s;
-    }
-
-    .image:hover {
-        transform: scale(1.1);
-        box-shadow: 10px 10px 10px 5px rgb(40, 194, 171);
-    }
-</style>
-
-<div class="container">
-    <div class="row">
-        {% for i in data %}
-        <div class="col-lg-4 ">
-            <!-- <h2 class="center">{{i.tittle}}</h2>     -->
-           
-                <img src="{{i.image.url}}" class="image center" alt="img"> <br>
-            <h2 class="center">{{i.title}}</h2>
-           
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="btn-group" style="margin-left: 130px;">
-            <a href="{% url 'aread' i.id %}" class="center"> <button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>&nbsp;&nbsp;
-            <a href="{% url 'cart_add' 'a' i.id %}" class="center"> <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button></a>
-            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-          </div>
-          <!-- <a href="{% url 'aread' i.id %}" class="center">Read More</a> <br> <br> -->
-         
+{% block body %}
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom">
+        <div>
+            <h1 class="section-title mb-1"><i class="fa-solid fa-headphones me-2"></i>Select Your Accessories</h1>
+            <p class="text-muted-soft mb-0">Chargers, headphones, phone cases, and workstation gear.</p>
         </div>
-           
+        <a href="{% url 'aadd' %}" class="btn-accent-custom text-white">
+            <i class="fa-solid fa-plus me-1"></i> Add Accessory
+        </a>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for i in data %}
+        <div class="col">
+            <div class="product-card">
+                <div class="card-img-wrapper">
+                    {% if i.image %}
+                    <img src="{{ i.image.url }}" alt="{{ i.title }}">
+                    {% else %}
+                    <div class="img-fallback w-100 h-100"></div>
+                    {% endif %}
+                </div>
+                <div class="card-content">
+                    <h3 class="product-title">{{ i.title }}</h3>
+                    <p class="product-desc">{{ i.desc|default:"Essential accessory to complement your phone or laptop." }}</p>
+                    <div class="card-footer-actions">
+                        <a href="{% url 'aread' i.id %}" class="btn-outline-custom flex-grow-1">
+                            <i class="fa-solid fa-eye me-1"></i> View
+                        </a>
+                        <a href="{% url 'cart_add' 'a' i.id %}" class="btn-primary-custom flex-grow-1">
+                            <i class="fa-solid fa-cart-plus me-1"></i> Add
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <i class="fa-solid fa-headphones fs-1 text-muted mb-3 d-block"></i>
+            <h4>No Accessories Found</h4>
+            <p class="text-muted">Check back later or click "Add Accessory" above to list a new item.</p>
         </div>
         {% endfor %}
     </div>
 </div>
-
 {% endblock body %}

@@ -4,63 +4,69 @@
 {% block title %}Home{% endblock title %}
 
 {% block body %}
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
+      <i class="fa-solid fa-layer-group me-1"></i> Featured Categories
+    </span>
+    <h1 class="display-6 section-title fw-bold">Select Your Mobile, Laptop & Accessories</h1>
+    <p class="text-muted-soft lead">Browse top quality gadgets with authentic guarantee and fast checkout.</p>
+  </div>
 
-
-<div class="container my-3">
-
-  <h1 class="my-4 text-center section-title">Select Your Mobile, Laptop And Accessories</h1>
-
-  <style>
-    .center {
-        display: table;
-        margin: auto;
-    }
-
-    .image {
-        margin-top: 50px;
-        width: 350px;
-        height: 470px;
-        object-fit: cover;
-        border-radius: 20px;
-        object-fit: cover;
-        transition: 0.4s;
-    }
-
-    .image:hover {
-        transform: scale(1.1);
-        box-shadow: 10px 10px 10px 5px rgb(40, 194, 171);
-    }
-</style>
-
-<div class="container">
-    <div class="row">
-       
-        <div class="col-lg-4 ">
-            <img src="{% static 'm2.jpg' %}" alt="Mobiles" class="image"><br><br>
-            <div class="text-center">
-                <h2 class="section-title">Mobiles</h2>
-                <a href="mobile" class="btn btn-success">Go to Mobiles</a>
-            </div>
-        </div>  
-
-        <div class="col-lg-4 ">
-            <img src="{% static 'images.jpg' %}" alt="Laptops" class="image"><br><br>
-            <div class="text-center">
-                <h2 class="section-title">Laptops</h2>
-                <a href="laptop" class="btn btn-success">Go to Laptops</a>
-            </div>
-        </div>  
-                
-        <div class="col-lg-4 ">
-            <img src="{% static 'm4.jpg' %}" alt="Accessories" class="image"><br><br>
-            <div class="text-center">
-                <h2 class="section-title">Accessories</h2>
-                <a href="accessories" class="btn btn-success">Go to Accessories</a>
-            </div>
-         </div>  
-        
-       
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Mobiles Card -->
+    <div class="col">
+      <div class="product-card">
+        <div class="card-img-wrapper">
+          <img src="{% static 'm2.jpg' %}" alt="Mobiles Category">
+        </div>
+        <div class="card-content">
+          <h3 class="product-title text-center"><i class="fa-solid fa-mobile-screen text-success me-2"></i>Mobiles</h3>
+          <p class="product-desc text-center">Discover the latest smartphones with high performance cameras, OLED screens, and long battery life.</p>
+          <div class="card-footer-actions justify-content-center mt-3">
+            <a href="{% url 'mobile' %}" class="btn-primary-custom w-100">
+              Explore Mobiles <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 
-  {% endblock body %}
+    <!-- Laptops Card -->
+    <div class="col">
+      <div class="product-card">
+        <div class="card-img-wrapper">
+          <img src="{% static 'images.jpg' %}" alt="Laptops Category">
+        </div>
+        <div class="card-content">
+          <h3 class="product-title text-center"><i class="fa-solid fa-laptop text-success me-2"></i>Laptops</h3>
+          <p class="product-desc text-center">Engineered for gaming, programming, business, and creative productivity with high speed processors.</p>
+          <div class="card-footer-actions justify-content-center mt-3">
+            <a href="{% url 'laptop' %}" class="btn-primary-custom w-100">
+              Explore Laptops <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accessories Card -->
+    <div class="col">
+      <div class="product-card">
+        <div class="card-img-wrapper">
+          <img src="{% static 'm4.jpg' %}" alt="Accessories Category">
+        </div>
+        <div class="card-content">
+          <h3 class="product-title text-center"><i class="fa-solid fa-headphones text-success me-2"></i>Accessories</h3>
+          <p class="product-desc text-center">Premium wireless earbuds, fast chargers, protective cases, mechanical keyboards, and more.</p>
+          <div class="card-footer-actions justify-content-center mt-3">
+            <a href="{% url 'accessrioes' %}" class="btn-primary-custom w-100">
+              Explore Accessories <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}

@@ -1,49 +1,49 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-{% block title %} Contect Us {% endblock title %}
+{% block title %}Contact Us{% endblock title %}
 
 {% block body %}
-{% load crispy_forms_tags %}
-<style>
-    .contact-hero {
-        background: linear-gradient(135deg, #e9fff9 0%, #f7faf9 60%, #ffffff 100%);
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
-    }
-
-    .contact-title {
-        color: var(--primary);
-        font-weight: 700;
-    }
-
-    .contact-subtitle {
-        color: var(--muted);
-    }
-</style>
-
 <div class="container my-5">
-    <div class="text-center mb-4">
-        <h1 class="contact-title mb-1">Contact Us</h1>
-        <p class="contact-subtitle mb-0">We usually respond within 24 hours</p>
-    </div>
-
-    <div class="contact-hero p-4 p-lg-5">
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-
-            {{form.name|as_crispy_field}}
-            {{form.email|as_crispy_field}}
-            {{form.mobile|as_crispy_field}}
-            {{form.address|as_crispy_field}}
-            {{form.subject|as_crispy_field}}
-
-            <div class="d-flex gap-2">
-                <button type="submit" class="btn btn-success">Submit</button>
-                <a href="home" class="btn btn-outline-secondary">Back to Home</a>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="text-center mb-4">
+                <h1 class="section-title mb-1"><i class="fa-solid fa-paper-plane me-2"></i>Contact Us</h1>
+                <p class="text-muted-soft mb-0">Have questions about a mobile or laptop? Send us a message.</p>
             </div>
-        </form>
+
+            <div class="product-card p-4 p-md-5">
+                <form action="{% url 'contectf' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.email|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.mobile|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.address|as_crispy_field }}
+                        </div>
+                        <div class="col-12">
+                            {{ form.subject|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 mt-4">
+                        <button type="submit" class="btn-primary-custom px-4 border-0">
+                            <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                        </button>
+                        <a href="{% url 'home' %}" class="btn-outline-custom px-4 text-decoration-none">
+                            <i class="fa-solid fa-arrow-left me-2"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-
 {% endblock body %}

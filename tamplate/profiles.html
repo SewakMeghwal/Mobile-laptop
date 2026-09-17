@@ -1,75 +1,66 @@
 {% extends 'base.html' %}
 
-{% block title%}Profile{% endblock title %}
+{% block title %}My Profile{% endblock title %}
 
 {% block body %}
-  <style>
-    .profile-hero {
-      background: linear-gradient(135deg, #e9fff9 0%, #b3ffff 45%, #e9fff9 100%);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    .profile-card {
-      border-radius: 18px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    .profile-avatar {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 6px solid #ffffff;
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
-    }
-
-    .profile-label {
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #198754;
-      font-weight: 700;
-    }
-  </style>
-
-  <div class="container my-5">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="profile-hero p-4 rounded-4 text-center mb-4">
-          <h1 class="mb-1">Profile</h1>
-          <p class="mb-0 text-muted">Welcome back, {{ user.username }}</p>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="product-card p-4 p-md-5">
+        <div class="text-center mb-4 pb-3 border-bottom">
+          <h2 class="section-title mb-1"><i class="fa-solid fa-user-gear me-2"></i>My Profile</h2>
+          <p class="text-muted-soft mb-0">Manage your user profile details and avatar.</p>
         </div>
 
-        <div class="card profile-card p-4">
-          <div class="row align-items-center g-4">
-            <div class="col-md-5 text-center">
+        <div class="row align-items-center g-4">
+          <div class="col-md-5 text-center">
+            {% if image %}
               {% for i in image %}
-                <img src="{{ i.image.url }}" alt="Profile photo" class="profile-avatar">
+                {% if i.image %}
+                  <img src="{{ i.image.url }}" alt="{{ user.username }}" class="rounded-circle border shadow-sm" style="width: 160px; height: 160px; object-fit: cover;">
+                {% else %}
+                  <div class="rounded-circle border shadow-sm img-fallback mx-auto d-flex align-items-center justify-content-center" style="width: 160px; height: 160px;">
+                    <i class="fa-solid fa-user fs-1 text-muted"></i>
+                  </div>
+                {% endif %}
               {% endfor %}
-            </div>
-            <div class="col-md-7">
-              <div class="mb-3">
-                <div class="profile-label">Username</div>
-                <div class="fs-5 fw-semibold">{{ user.username }}</div>
+            {% else %}
+              <div class="rounded-circle border shadow-sm mx-auto d-flex align-items-center justify-content-center bg-light" style="width: 160px; height: 160px;">
+                <i class="fa-solid fa-user fs-1 text-muted"></i>
               </div>
-              <div class="mb-4">
-                <div class="profile-label">Email</div>
-                <div class="fs-5 fw-semibold">{{ user.email }}</div>
-              </div>
+            {% endif %}
+          </div>
 
-              <div class="d-flex flex-wrap gap-2">
+          <div class="col-md-7">
+            <div class="mb-3">
+              <span class="text-muted small text-uppercase fw-bold">Username</span>
+              <div class="fs-5 fw-bold text-dark">{{ user.username }}</div>
+            </div>
+            <div class="mb-4">
+              <span class="text-muted small text-uppercase fw-bold">Email Address</span>
+              <div class="fs-6 fw-semibold text-dark">{{ user.email|default:"Not specified" }}</div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+              {% if image %}
                 {% for i in image %}
-                  <a href="{% url 'updatei' i.id %}" class="btn btn-success">Update Photo</a>
-                  <a href="{% url 'deletei' i.id %}" class="btn btn-outline-danger">Delete Photo</a>
+                  <a href="{% url 'updatei' i.id %}" class="btn-primary-custom text-decoration-none">
+                    <i class="fa-solid fa-pen-to-square me-1"></i> Change Photo
+                  </a>
+                  <a href="{% url 'deletei' i.id %}" class="btn btn-outline-danger rounded-pill px-3">
+                    <i class="fa-solid fa-trash me-1"></i> Remove
+                  </a>
                 {% endfor %}
-              </div>
+              {% else %}
+                <a href="{% url 'profilef' %}" class="btn-primary-custom text-decoration-none">
+                  <i class="fa-solid fa-upload me-1"></i> Upload Profile Photo
+                </a>
+              {% endif %}
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
+</div>
 {% endblock body %}
-
